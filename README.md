@@ -1,24 +1,32 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Query Houses
 
-Things you may want to cover:
+## JSON Schema
+{
+  "data": {
+    "queryLocation": [
+      {
+        "street_address": "123 Fake Street"
+        "city": "City"
+        "state": "CO"
+        "zip": "12345"
+        "lat":  1.234
+        "long": 1.234
+        "type": "Apt"
+        "scariness": 
+          {
+           "description": "How scary the decorations are"
+           "type": "Number"
+           "minimum": 0
+           "maximum": 10
+          }
+        "description": string
+        "start": tbd/datetime
+        "end": tbd/datetime
+        "img": string
+      }
+    ]
+  }
+}
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
