@@ -7,7 +7,7 @@ module Types
     field :city, String
     field :state, String
     field :zipcode, String
-    field :type, String
+    field :location_type, String
     field :scariness_level, Integer
     field :description, String
     field :start_time, String
