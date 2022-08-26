@@ -3,7 +3,8 @@
 # Query Houses
 
 ## JSON Schema
-```{
+```
+{
   "data": {
     "queryLocation": [
       {
