@@ -10,6 +10,13 @@ module Mutations
             post '/graphql', params: { query: query() }
           end.to change { Location.count }.by(1)                       
         end
+
+        xit "returns locations posted when sent from a different origin" do
+          expect do
+            post '/graphql', params: { query: query() }, headers: { 'HTTP_ORIGIN' => 'https://treat-streets-fe.herokuapp.com' }
+            binding.pry
+          end.to change { Location.count }.by(1)
+        end
       end
     end
 
