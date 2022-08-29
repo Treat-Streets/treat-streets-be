@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 module Mutations
-  RSpec.describe "Posts" do
+  RSpec.describe "Posts", :vcr do
 
     describe "POST /graphql" do
       describe "happy path" do
@@ -10,10 +10,31 @@ module Mutations
             post '/graphql', params: { query: query() }
           end.to change { Location.count }.by(1)                       
         end
+
+        it 'returns all locations' do 
+          post '/graphql', params: { query: query }
+          post '/graphql', params: { query: query }
+
+          post '/graphql', params: { query: get_query }
+          
+          json_response = JSON.parse(response.body, symbolize_names: true)
+          expect(json_response[:data][:locations].count).to eq(2)
+        end
       end
     end
 
-    def query()
+    def get_query
+      <<~GQL
+      query {
+        locations {
+          streetAddress
+          city
+        }
+      }
+      GQL
+    end
+
+    def query
       <<~GQL
       mutation {
       createLocation (input: {
