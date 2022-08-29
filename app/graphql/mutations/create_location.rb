@@ -17,10 +17,10 @@ class Mutations::CreateLocation < Mutations::BaseMutation
   def resolve(street_address:, city:, state:, zipcode:, location_type:, description:, scariness_level:, start_time:, end_time:, image:, email:)
     user = User.find_or_create_by(email: email)
     lat_long = GeocoderFacade.get_coordinates(street_address, city, state)
+      
     location = Location.new(street_address: street_address, city: city, state: state, zipcode: zipcode, location_type: location_type, description: description, 
       scariness_level: scariness_level, start_time: start_time, end_time: end_time, image: image, user: user, latitude: lat_long[:lat], longitude: lat_long[:lng])
-
-    if location.save
+      if location.save
       {
         location: location,
         errors: []
