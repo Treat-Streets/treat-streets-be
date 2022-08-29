@@ -5,17 +5,10 @@ module Mutations
 
     describe "POST /graphql" do
       describe "happy path" do
-        it "returns the location posted" do
+        it "returns the location posted", :vcr do
           expect do
             post '/graphql', params: { query: query() }
           end.to change { Location.count }.by(1)                       
-        end
-
-        xit "returns locations posted when sent from a different origin" do
-          expect do
-            post '/graphql', params: { query: query() }, headers: { 'HTTP_ORIGIN' => 'https://treat-streets-fe.herokuapp.com' }
-            binding.pry
-          end.to change { Location.count }.by(1)
         end
       end
     end
