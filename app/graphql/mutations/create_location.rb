@@ -4,7 +4,7 @@ class Mutations::CreateLocation < Mutations::BaseMutation
   argument :state, String, required: true
   argument :zipcode, String, required: true
   argument :location_type, String, required: true
-  argument :description, String, required: true
+  argument :description, String, required: false
   argument :scariness_level, Integer, required: true
   argument :start_time, String, required: true
   argument :end_time, String, required: true
