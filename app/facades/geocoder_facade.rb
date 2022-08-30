@@ -1,6 +1,6 @@
 class GeocoderFacade
   def self.get_coordinates(address, city, state)
-    location = "#{address} #{city},#{state}"
+    location = "#{address} #{city} #{state}"
     json_response = GeocoderService.get_coordinates(location)
     if GeocoderFacade.validate_location?(address, city, state, json_response)
       lat_long = {
