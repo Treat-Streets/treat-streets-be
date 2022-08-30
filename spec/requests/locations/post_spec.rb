@@ -71,6 +71,8 @@ module Mutations
           startTime
           endTime
           image
+          latitude
+          longitude
           }
         }
       }
