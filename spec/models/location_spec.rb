@@ -11,6 +11,8 @@ RSpec.describe Location do
   it { should validate_presence_of :start_time }
   it { should validate_presence_of :end_time }
   it { should validate_presence_of :image }
+  it { should validate_presence_of :latitude }
+  it { should validate_presence_of :longitude }
 
   it { should belong_to :user }
 
