@@ -11,7 +11,7 @@ class Mutations::CreateLocation < Mutations::BaseMutation
   argument :image, String, required: false
   argument :email, String, required: true
 
-  field :location, Types::LocationType, null: false
+  field :location, Types::LocationType, null: true
   field :errors, [String], null: false
 
   def resolve(street_address:, city:, state:, zipcode:, location_type:, description:, scariness_level:, start_time:, end_time:, image:, email:)
@@ -19,17 +19,24 @@ class Mutations::CreateLocation < Mutations::BaseMutation
     lat_long = GeocoderFacade.get_coordinates(street_address, city, state)
       
     location = Location.new(street_address: street_address, city: city, state: state, zipcode: zipcode, location_type: location_type, description: description, 
-      scariness_level: scariness_level, start_time: start_time, end_time: end_time, image: image, user: user, latitude: lat_long[:lat], longitude: lat_long[:lng])
-      if location.save
+                            scariness_level: scariness_level, start_time: start_time, end_time: end_time, image: image, user: user, latitude: lat_long[:lat], longitude: lat_long[:lng])
+    if location.save
       {
         location: location,
         errors: []
       }
     else
-      {
-        location: nil,
-        errors: user.errors.full_messages
-      }
+      if lat_long == {}
+        {
+          location: nil,
+          errors: ["Invalid address"]
+        }
+      else
+        {
+          location: nil,
+          errors: user.errors.full_messages
+        }
+      end
     end
   end
 end
