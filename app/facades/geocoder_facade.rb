@@ -35,7 +35,7 @@ class GeocoderFacade
   end
 
   def self.valid_street?(street)
-    !street.include?('[') || street != ''
+    !street.include?('[') && street != ''
   end
 
 end
