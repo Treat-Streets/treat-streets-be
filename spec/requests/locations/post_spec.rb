@@ -4,29 +4,35 @@ module Mutations
   RSpec.describe "Posts", :vcr do
 
     describe "POST /graphql" do
-      describe "happy path" do
-        it "returns the location posted" do
-          expect do
-            post '/graphql', params: { query: query() }
-          end.to change { Location.count }.by(1)                       
+      context "success" do
+        describe "createLocation mutation" do
+          it "returns the location posted" do
+            expect do
+              post '/graphql', params: { query: query() }
+            end.to change { Location.count }.by(1)                       
+          end
         end
 
-        it 'returns all locations' do 
-          post '/graphql', params: { query: query }
-          post '/graphql', params: { query: query }
+        describe "locations query" do
+          it 'returns all locations' do 
+            post '/graphql', params: { query: query }
+            post '/graphql', params: { query: query }
 
-          post '/graphql', params: { query: get_query }
-          
-          json_response = JSON.parse(response.body, symbolize_names: true)
-          expect(json_response[:data][:locations].count).to eq(2)
+            post '/graphql', params: { query: get_query }
+            
+            json_response = JSON.parse(response.body, symbolize_names: true)
+            expect(json_response[:data][:locations].count).to eq(2)
+          end
         end
       end
 
-      describe "sad path" do
-        it "returns error if address is invalid" do
-          post '/graphql', params: { query: bad_query() }
-          json_response = JSON.parse(response.body, symbolize_names: true)
-          expect(json_response[:errors][0][:message]).to eq('Cannot return null for non-nullable field CreateLocationPayload.location')
+      context "failure" do
+        describe "createLocation mutation" do
+          it "returns 'Invalid address' error if address is invalid" do
+            post '/graphql', params: { query: invalid_address_query() }
+            json_response = JSON.parse(response.body, symbolize_names: true)
+            expect(json_response[:data][:createLocation][:errors][0]).to eq('Invalid address')
+          end
         end
       end
     end
@@ -44,7 +50,7 @@ module Mutations
       GQL
     end
 
-    def bad_query
+    def invalid_address_query
       <<~GQL
       mutation {
       createLocation (input: {
@@ -74,6 +80,7 @@ module Mutations
           latitude
           longitude
           }
+        errors
         }
       }
       GQL
