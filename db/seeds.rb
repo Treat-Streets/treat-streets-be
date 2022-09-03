@@ -7,6 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 user = User.create!(email: "email@gmail.com")
+user2 = User.create!(email: "fake@gmail.com")
+user3 = User.create!(email: "demo@gmail.com")
 
 cities = ["Denver", "Lakewood", "Aurora", "Arvada", "Englewood", "Westminster", "Thornton", "Broomfield", "Applewood", "Littleton", "Centennial", "Boulder", "Brighton"]
 cities.each do |city|
@@ -27,3 +29,15 @@ cities.each do |city|
                     user: user)
   end
 end
+
+Location.create!(street_address: "43 Sommerset Circle", city: "Englewood", state:"CO",
+   zipcode: "80111", location_type: "Home", start_time: "3:00", end_time: "7:00", latitude: 39.614408 , longitude: -104.892167, scariness_level: 2, image: "url.com", user: user)
+Location.create!(street_address: "3815 S Bannock St", city: "Englewood", state:"CO",
+   zipcode: "80110", location_type: "Home", start_time: "3:00", end_time: "7:00", latitude: 39.647048, longitude: -104.990167, scariness_level: 6, image: "scaryhouses.com", user: user1)
+Location.create!(street_address: "3822 S Bannock St", city: "Englewood", state:"CO",
+   zipcode: "80110", location_type: "Home", start_time: "3:00", end_time: "7:00", latitude: 39.64680, longitude: -104.98997, scariness_level: 3, image: "scaryhouses.com", user: user2)
+Location.create!(street_address: "3865 S Bannock St", city: "Englewood", state:"CO",
+   zipcode: "80110", location_type: "Home", start_time: "5:00", end_time: "8:00", latitude: 39.64649, longitude: -104.99025, scariness_level: 3, image: "scaryhouses.com", user: user2)
+Location.create!(street_address: "3890 S Bannock St", city: "Englewood", state:"CO",
+   zipcode: "80110", location_type: "Home", start_time: "5:00", end_time: "8:00", latitude: 39.64610, longitude: -104.98997, scariness_level: 3, image: "scaryhouses.com", user: user2)
+

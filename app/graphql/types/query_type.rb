@@ -5,9 +5,14 @@ module Types
     include GraphQL::Types::Relay::HasNodesField
 
     field :locations, [Types::LocationType], null: false
+    field :coordinates, [Types::CoordinateType], null: false
 
     def locations
       Location.all
+    end
+
+    def coordinates
+
     end
   end
 end

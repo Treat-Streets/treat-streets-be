@@ -3,7 +3,7 @@ class GeocoderFacade
     location = "#{address} #{city} #{state}"
     if GeocoderFacade.validate_alpha_numeric(address)
       json_response = GeocoderService.get_coordinates(location)
-      if GeocoderFacade.validate_location?(address, city, state, json_response)
+      if GeocoderFacade.validate_location?(city, state, json_response)
         lat_long = {
           lat: json_response[:results][0][:locations][0][:latLng][:lat],
           lng: json_response[:results][0][:locations][0][:latLng][:lng]
@@ -18,7 +18,7 @@ class GeocoderFacade
 
   private 
 
-  def self.validate_location?(address, city, state, json_response)
+  def self.validate_location?(city, state, json_response)
     street = json_response[:results][0][:locations][0][:street]
     response_city = json_response[:results][0][:locations][0][:adminArea5]
     response_state = json_response[:results][0][:locations][0][:adminArea3]
