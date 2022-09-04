@@ -16,6 +16,18 @@ class GeocoderFacade
     end
   end
 
+  def self.get_coordinates_by_zip(zipcode)
+    if valid_zip?(zipcode)
+      json_response = GeocoderService.get_coordinates(zipcode)
+      lat_long = {
+          lat: json_response[:results][0][:locations][0][:latLng][:lat],
+          lng: json_response[:results][0][:locations][0][:latLng][:lng]
+        }
+    else
+      {}
+    end
+  end
+
   private 
 
   def self.validate_location?(city, state, json_response)
@@ -36,6 +48,10 @@ class GeocoderFacade
 
   def self.valid_street?(street)
     !street.include?('[') || street != ''
+  end
+
+  def self.valid_zip?(zipcode)
+    zipcode.length == 5 && zipcode.match(/[^0-9]/) == nil
   end
 
 end
