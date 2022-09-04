@@ -8,6 +8,7 @@ module Types
     field :coordinates, Types::CoordinatesType, null: true do
       argument :zipcode, String
     end
+    field :errors, [String], null: true
 
     def locations
       Location.all
@@ -15,9 +16,11 @@ module Types
 
     def coordinates(zipcode:)
       lat_long = GeocoderFacade.get_coordinates_by_zip(zipcode)
+      
       if lat_long == {}
         {
-          coordinates: nil,
+          latitude: nil,
+          longitude: nil,
           errors: ["Invalid Zip Code."]
         }
       else
