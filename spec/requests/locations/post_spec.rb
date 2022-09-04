@@ -50,7 +50,7 @@ module Mutations
             post '/graphql', params: { query: bad_zip_query }
             json_response = JSON.parse(response.body, symbolize_names: true)
             expect(json_response[:data]).to be_a(Hash)
-            expect(json_response[:data][:errors]).to eq("Invalid Zipcode.")
+            expect(json_response[:data][:coordinates][:errors][0]).to eq('Invalid Zip Code.')
           end
         end
       end
