@@ -4,10 +4,31 @@ module Types
     include GraphQL::Types::Relay::HasNodeField
     include GraphQL::Types::Relay::HasNodesField
 
-    field :locations, [Types::LocationType], null: false
+    field :locations, [Types::LocationType], null: true
+    field :coordinates, Types::CoordinatesType, null: true do
+      argument :zipcode, String
+    end
 
     def locations
       Location.all
+    end
+
+    def coordinates(zipcode:)
+      lat_long = GeocoderFacade.get_coordinates_by_zip(zipcode)
+      
+      if lat_long == {}
+        {
+          latitude: nil,
+          longitude: nil,
+          errors: ["Invalid Zip Code."]
+        }
+      else
+        {
+          latitude: lat_long[:lat],
+          longitude: lat_long[:lng],
+          errors: []
+        }
+      end
     end
   end
 end

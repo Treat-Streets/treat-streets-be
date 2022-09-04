@@ -29,7 +29,7 @@ class Mutations::CreateLocation < Mutations::BaseMutation
       if lat_long == {}
         {
           location: nil,
-          errors: ["Invalid address"]
+          errors: ["Invalid Address."]
         }
       else
         {

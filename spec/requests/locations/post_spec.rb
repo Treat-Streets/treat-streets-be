@@ -24,6 +24,16 @@ module Mutations
             expect(json_response[:data][:locations].count).to eq(2)
           end
         end
+
+        describe "coordinates by zipcode query" do
+          it 'returns coordinates from zipcode input' do
+            post '/graphql', params: { query: zip_query }
+            json_response = JSON.parse(response.body, symbolize_names: true)
+            expect(json_response[:data]).to be_a(Hash)
+            expect(json_response[:data][:coordinates][:latitude]).to be_a(Float)
+            expect(json_response[:data][:coordinates][:longitude]).to be_a(Float)
+          end
+        end
       end
 
       context "failure" do
@@ -31,7 +41,16 @@ module Mutations
           it "returns 'Invalid address' error if address is invalid" do
             post '/graphql', params: { query: invalid_address_query() }
             json_response = JSON.parse(response.body, symbolize_names: true)
-            expect(json_response[:data][:createLocation][:errors][0]).to eq('Invalid address')
+            expect(json_response[:data][:createLocation][:errors][0]).to eq('Invalid Address.')
+          end
+        end
+
+        describe "coordinates by zipcode query" do
+          it 'returns error from invalid zipcode input' do
+            post '/graphql', params: { query: bad_zip_query }
+            json_response = JSON.parse(response.body, symbolize_names: true)
+            expect(json_response[:data]).to be_a(Hash)
+            expect(json_response[:data][:coordinates][:errors][0]).to eq('Invalid Zip Code.')
           end
         end
       end
@@ -45,6 +64,32 @@ module Mutations
           city
           latitude
           longitude
+        }
+      }
+      GQL
+    end
+
+    def zip_query
+      <<~GQL
+      query {
+        coordinates (zipcode: "53144")
+        {
+          latitude
+          longitude
+          errors
+        }
+      }
+      GQL
+    end
+
+    def bad_zip_query
+      <<~GQL
+      query {
+        coordinates (zipcode: "abcde")
+        {
+          latitude
+          longitude
+          errors
         }
       }
       GQL
