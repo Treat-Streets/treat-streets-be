@@ -47,7 +47,7 @@ class GeocoderFacade
   end
 
   def self.valid_street?(street)
-    !street.include?('[') || street != ''
+    !street.include?('[') && street != ''
   end
 
   def self.valid_zip?(zipcode)

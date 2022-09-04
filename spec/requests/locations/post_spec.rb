@@ -76,6 +76,7 @@ module Mutations
         {
           latitude
           longitude
+          errors
         }
       }
       GQL
@@ -88,6 +89,7 @@ module Mutations
         {
           latitude
           longitude
+          errors
         }
       }
       GQL

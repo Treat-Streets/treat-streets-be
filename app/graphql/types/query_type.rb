@@ -8,7 +8,6 @@ module Types
     field :coordinates, Types::CoordinatesType, null: true do
       argument :zipcode, String
     end
-    field :errors, [String], null: true
 
     def locations
       Location.all
@@ -26,7 +25,8 @@ module Types
       else
         {
           latitude: lat_long[:lat],
-          longitude: lat_long[:lng]
+          longitude: lat_long[:lng],
+          errors: []
         }
       end
     end
