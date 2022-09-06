@@ -36,6 +36,9 @@
 
 ## GraphQL Example responses and requests
 ### Query Locations
+Retrieves all locations in the database. Listed are all the attributes that can be requested.
+A minimum of one attribute of the locations must be requests in the query.
+
 Request
 ```
 query {
@@ -170,7 +173,8 @@ Response
 #### Failed Request
 Adderesses are checked for validity. If an incorrect street address, city, or state 
 are entered no location will be created in the database.
-Request
+
+Bad Request
 ```
 mutation {
       createLocation (input: {
@@ -220,7 +224,7 @@ Response
 
 ### Get coordinates from zipcode
 #### Successful Request
-Bad Request
+Request
 ```
 {
     coordinates (zipcode: "80111"){
@@ -244,6 +248,7 @@ Response
 ```
 #### Failed Request
 Zipcodes are validated to check for correct length and that they only contain integers.
+
 Bad Requests
 ```
 {
