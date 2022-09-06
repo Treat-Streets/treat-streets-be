@@ -130,5 +130,8 @@ $ rails s
    <td align="center"><a href="https://github.com/ASands17"><img src="https://avatars.githubusercontent.com/u/93043035?v=4" width="100px;" alt=""/><br /><sub><b>Amanda S. (she/her)</b></sub></a><br /><a href="https://www.linkedin.com/in/amanda-sands1/" title ="Linked In"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a></td>
 
    <td align="center"><a href="https://github.com/VictoriaFC"><img src="https://avatars.githubusercontent.com/u/98445902?v=4" width="100px;" alt=""/><br /><sub><b>Victoria F. (she/her)</b></sub></a><br /><a href="https://www.linkedin.com/in/victoria-fox-collis/" title ="Linked In"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a></td>
+    <td align="center"><a href="https://github.com/CorCanavan"><img src="https://avatars.githubusercontent.com/u/97919748?v=4" width="100px;" alt=""/><br /><sub><b>Corinne C. (she/her)</b></sub></a><br /><a href="https://www.linkedin.com/in/corinnecanavan/" title ="Linked In"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a></td>
+
   </tr>
  </table>
+ 
