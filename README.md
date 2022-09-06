@@ -8,6 +8,8 @@
 
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/Treat-Streets/treat-streets-be/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/Treat-Streets/treat-streets-be/tree/main)
 
+![GraphQL](https://img.shields.io/badge/GraphQl-E10098?style=for-the-badge&logo=graphql&logoColor=white)
+
 
 ## Installation
 
