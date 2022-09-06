@@ -1,29 +1,44 @@
-# README
-  <p align="center">
+<p align="center">
     <a href="https://treat-streets-fe.herokuapp.com/"><strong>Treat Streets - Deployed Link »</strong></a>
   </p>
   <p align="center">
     <a href="https://github.com/Treat-Streets/treat-streets-fe"><strong>Treat Streets - Front End Repo »</strong></a>
   </p>
 
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/Treat-Streets/treat-streets-be/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/Treat-Streets/treat-streets-be/tree/main)
 
+### Built With
+![Ruby](https://img.shields.io/badge/Ruby_on_Rails-CC0000?style=for-the-badge&logo=ruby-on-rails&logoColor=white)
 ![GraphQL](https://img.shields.io/badge/GraphQl-E10098?style=for-the-badge&logo=graphql&logoColor=white)
+![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=Postman&logoColor=white)
+![Postgresql](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![Heroku](https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)
+![Miro](https://img.shields.io/badge/Miro-F7C922?style=for-the-badge&logo=Miro&logoColor=050036)
+
+
+Using CircleCI for Continuous Integration
+
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/Treat-Streets/treat-streets-be/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/Treat-Streets/treat-streets-be/tree/main)
 
 
 ## Installation
 
 1. Clone this directory to your local repository using the SSH key:
 
-```
+```shell
 
 $ git clone git@github.com:Treat-Streets/treat_streets_be.git
 
 ```
 
 2. Install gems for development using Bundler:
+- *If Bundler is not installed, first run the following command:*
 
+```shell
+$ gem install bundler
 ```
+
+```shell
 
 $ bundle install
 
@@ -31,7 +46,7 @@ $ bundle install
 
 3. Set up database:
 
-```
+```shell
 
 $ rails db:{drop,create,migrate,seed}
 
@@ -39,7 +54,7 @@ $ rails db:{drop,create,migrate,seed}
 
 4. Run test suite:
 
-```
+```shell
 
 $ bundle exec rspec
 
@@ -47,7 +62,7 @@ $ bundle exec rspec
 
 5. Set up Application.yml:
 
-```
+```shell
 
 $ bundle exec figaro install
 
@@ -56,13 +71,13 @@ $ bundle exec figaro install
 6. Inside your Application.yml:
 
 
-```
-MAPQUEST_KEY: <Mapquest key> 
+```ruby
+MAPQUEST_KEY: <Mapquest_key> 
 ```
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://developer.mapquest.com/">Get Key Here »</a>
 
-```
-YELP_API_KEY: <Yelp key>
+```ruby
+YELP_API_KEY: <Yelp_key>
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.yelp.com/developers/documentation/v3/authentication">Get Key Here »</a>
@@ -71,7 +86,7 @@ YELP_API_KEY: <Yelp key>
 
 7. Run your local development server:
 
-```
+```shell
 
 $ rails s
 
@@ -85,7 +100,7 @@ Retrieves all locations in the database. Listed are all the attributes that can 
 A minimum of one attribute of the locations must be requested in the query.
 
 Request
-```
+```gql
 query {
     locations {
         streetAddress
@@ -104,7 +119,7 @@ query {
 }
 ```
 Response
-```
+```json
 {
     "data": {
         "locations": [
@@ -155,10 +170,10 @@ Response
 }
 ```
 
-### Create Location
-#### Successful Request
+## Create Location
+### Successful Request
 Request
-```
+```gql
 mutation {
       createLocation (input: {
         streetAddress: "10490 East Aberdeen Ave",
@@ -192,7 +207,7 @@ mutation {
       }
 ```
 Response
-```
+```json
 {
     "data": {
         "createLocation": {
@@ -215,12 +230,12 @@ Response
     }
 }
 ```
-#### Failed Request
+### Failed Request
 Addresses are checked for validity. If an incorrect street address, city, or state 
 are entered no location will be created in the database.
 
 Bad Request - The incorrect city is given for this street address
-```
+```gql
 mutation {
       createLocation (input: {
         streetAddress: "10490 East Aberdeen Ave",
@@ -254,7 +269,7 @@ mutation {
       }
 ```
 Response
-```
+```json
 {
     "data": {
         "createLocation": {
@@ -267,10 +282,10 @@ Response
 }
 ```
 
-### Get coordinates from zipcode
-#### Successful Request
+## Get coordinates from zipcode
+### Successful Request
 Request
-```
+```gql
 {
     coordinates (zipcode: "80111"){
         latitude
@@ -280,7 +295,7 @@ Request
 }
 ```
 Response
-```
+```json
 {
     "data": {
         "coordinates": {
@@ -291,11 +306,11 @@ Response
     }
 }
 ```
-#### Failed Request
+### Failed Request
 Zipcodes are validated to check for correct length and that they only contain integers.
 
 Bad Requests
-```
+```gql
 {
     coordinates (zipcode: "8011"){
         latitude
@@ -304,7 +319,7 @@ Bad Requests
     }
 }
 ```
-```
+```gql
 {
     coordinates (zipcode: "80d11"){
         latitude
@@ -314,7 +329,7 @@ Bad Requests
 }
 ```
 Response
-```
+```json
 {
     "data": {
         "coordinates": {
