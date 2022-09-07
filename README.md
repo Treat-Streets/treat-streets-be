@@ -6,6 +6,15 @@
   <p align="center">
     <a href="https://github.com/Treat-Streets/treat-streets-fe"><strong>Treat Streets - Front End Repo »</strong></a>
   </p>
+  
+  ## Table of Contents
+
+- [Abstract](#abstract)
+- [Built With](#built-with)
+- [Installation](#installation)
+- [GraphQL Example responses and requests](#graphql-example-responses-and-requests)
+- [Back End Contributors](#back-end-contributors)
+- [Front End Contributors](#front-end-contributors)
 
 ### Abstract
 This Halloween themed application is meant to give trick-or-treaters and parents more information about participating homes in their area. The application allows users to view a map of houses in their area who are registered to be giving out candy for Halloween and to register their own house to be added to the map. This is the Back End repository built with Ruby on Rails with GraphQL endpoints.   
