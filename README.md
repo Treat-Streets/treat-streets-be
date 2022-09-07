@@ -1,9 +1,14 @@
+![Header](https://user-images.githubusercontent.com/98415017/188760792-2b0a5ae9-1934-4d98-ba0e-0d0bd7e84b6a.png)
+
 <p align="center">
     <a href="https://treat-streets-fe.herokuapp.com/"><strong>Treat Streets - Deployed Link »</strong></a>
   </p>
   <p align="center">
     <a href="https://github.com/Treat-Streets/treat-streets-fe"><strong>Treat Streets - Front End Repo »</strong></a>
   </p>
+
+### Abstract
+This Halloween themed application is meant to give trick-or-treaters and parents more information about participating homes in their area. The application allows users to view a map of houses in their area who are registered to be giving out candy for Halloween and to register their own house to be added to the map. This is the Back End repository built with Ruby on Rails with GraphQL endpoints.   
 
 
 ### Built With
